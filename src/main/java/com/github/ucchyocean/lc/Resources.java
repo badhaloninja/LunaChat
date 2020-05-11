@@ -21,7 +21,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public class Resources {
 
-    private static final String FILE_NAME = "messages.yml";
+    private static final String FILE_NAME = "messages_en.yml";
 
     private static YamlConfiguration defaultMessages;
     private static YamlConfiguration resources;

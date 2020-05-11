@@ -1,0 +1,252 @@
+name: ${project.name}
+main: com.github.ucchyocean.lc.LunaChat
+version: ${project.version}
+authors: [ucchy, YukiLeafX, LazyGon]
+description: ${project.description}
+softdepend: [Vault, dynmap, HawkEye, Multiverse-Core, mcMMO, Prism]
+
+commands:
+  lunachat:
+    description: lunachatのユーザーコマンド
+    aliases: [ch, lc]
+    usage: |
+           /<command> join (channel) - チャンネルに参加します。
+           /<command> leave - 参加しているチャンネルから退出します。
+           /<command> list - チャンネルのリストを表示します。
+           /<command> invite (name) [force] - 指定した人をチャンネルチャットに招待します。
+           /<command> accept - 招待を受けてチャンネルチャットに入室します。
+           /<command> deny - 招待を拒否します。
+           /<command> kick (name) [channel] - 指定した人をチャンネルチャットからキックします。
+           /<command> ban (name) [channel] - 指定した人をチャンネルチャットからBANします。
+           /<command> ban (name) [minutes] - 指定した人を指定した分間、BANします。
+           /<command> pardon (name) [channel] - 指定した人のBANを解除します。
+           /<command> mute (name) [channel] - 指定した人をチャンネルチャットからMuteします。
+           /<command> mute (name) [minutes] - 指定した人を指定した分間、Muteします。
+           /<command> unmute (name) [channel] - 指定した人のMuteを解除します。
+           /<command> hide (channel) - 指定したチャンネルの発言内容を非表示にします。
+           /<command> hide channel (channel) - 指定したチャンネルの発言内容を非表示にします。
+           /<command> hide (player) - 指定したプレイヤーの発言内容を非表示にします。
+           /<command> hide player (player) - 指定したプレイヤーの発言内容を非表示にします。
+           /<command> unhide (channel) - 指定したチャンネルの発言内容を非表示から表示に戻します。
+           /<command> unhide channel (channel) - 指定したチャンネルの発言内容を非表示から表示に戻します。
+           /<command> unhide (player) - 指定したプレイヤーの発言内容を非表示から表示に戻します。
+           /<command> unhide player (player) - 指定したプレイヤーの発言内容を非表示から表示に戻します。
+           /<command> info [channel] - チャンネルの情報を表示します。
+           /<command> log [channel] [key=value...] - チャンネルのログを表示します。
+           /<command> create (channel) - チャンネルを作成します。
+           /<command> remove [channel] - チャンネルを削除します。
+           /<command> format [channel] (format...) - チャンネルのメッセージフォーマットを設定します。
+           /<command> moderator [channel] (player...) - チャンネルのモデレーターを指定したプレイヤーに設定します。
+           /<command> dictionary (add (word) (value)|remove (word)) - Japanize変換辞書に新しいワードを登録したり、指定したワードを削除したりします。
+           /<command> option (key=value...) - チャンネルのオプションを設定します。
+           /<command> template (number) (template...) - メッセージフォーマットのテンプレートを登録します。
+           /<command> check - モデレータがいないチャンネルを一覧します。
+           /<command> check remove - /<command> check で一覧されたチャンネルを全て削除します。
+           /<command> set default (player) [channel] - 指定したプレイヤーの発言先チャンネルを、指定したチャンネルに設定します。
+           /<command> reload - config.ymlの再読み込みをします。
+           /<command> help [user|mod|admin] [page] - ヘルプを表示します。
+  tell:
+    description: 1:1チャット送信コマンド
+    aliases: [msg, message, m, t, w]
+    usage: /<command> (name) [message] - 指定した人との1:1チャットを開始します。
+    permission: lunachat.message
+    permission-message: パーミッション "<permission>" が無いため、実行できません。
+  reply:
+    description: 1:1チャット返信コマンド
+    aliases: [r]
+    usage: /<command> [message] - 受信した1:1チャットに返信します。
+    permission: lunachat.reply
+    permission-message: パーミッション "<permission>" が無いため、実行できません。
+  lcjapanize:
+    description: lunachatのjapanizeオンオフ設定コマンド
+    aliases: [japanize, jp]
+    usage: |
+           /<command> on|off - Turn on/off the Japanize conversion of your chat.
+           /<command> (player) (on|off) - Turn on/off the Japanize conversion of other player's chat.
+    permission: lunachat.japanize
+    permission-message: You don't have the permission "<permission>".
+
+permissions:
+  lunachat.join:
+    description: joinコマンドの使用権限
+    default: true
+  lunachat.leave:
+    description: leaveコマンドの使用権限
+    default: true
+  lunachat.list:
+    description: listコマンドの使用権限
+    default: true
+  lunachat.invite:
+    description: inviteコマンドの使用権限
+    default: true
+  lunachat.accept:
+    description: acceptコマンドの使用権限
+    default: true
+  lunachat.deny:
+    description: denyコマンドの使用権限
+    default: true
+  lunachat.kick:
+    description: kickコマンドの使用権限
+    default: true
+  lunachat.ban:
+    description: banコマンドの使用権限
+    default: true
+  lunachat.pardon:
+    description: pardonコマンドの使用権限
+    default: true
+  lunachat.mute:
+    description: muteコマンドの使用権限
+    default: true
+  lunachat.unmute:
+    description: unmuteコマンドの使用権限
+    default: true
+  lunachat.hide:
+    description: hideコマンドの使用権限
+    default: true
+  lunachat.unhide:
+    description: unhideコマンドの使用権限
+    default: true
+  lunachat.info:
+    description: infoコマンドの使用権限
+    default: true
+  lunachat.log:
+    description: logコマンドの使用権限
+    default: true
+  lunachat.create:
+    description: createコマンドの使用権限
+    default: true
+  lunachat.remove:
+    description: removeコマンドの使用権限
+    default: true
+  lunachat.format:
+    description: formatコマンドの使用権限
+    default: true
+  lunachat.moderator:
+    description: moderatorコマンドの使用権限
+    default: true
+  lunachat.option:
+    description: optionコマンドの使用権限
+    default: true
+  lunachat.message:
+    description: messageコマンドの使用権限
+    default: true
+  lunachat.reply:
+    description: replyコマンドの使用権限
+    default: true
+  lunachat.help:
+    description: helpコマンドの使用権限
+    default: true
+  lunachat.japanize:
+    description: lunachatのjapanizeオンオフ設定コマンドの使用権限
+    default: true
+  lunachat.allowcc:
+    description: チャットにおけるカラーコードの使用権限
+    default: true
+  lunachat.*:
+    children:
+      lunachat.join: true
+      lunachat.leave: true
+      lunachat.list: true
+      lunachat.invite: true
+      lunachat.accept: true
+      lunachat.deny: true
+      lunachat.kick: true
+      lunachat.ban: true
+      lunachat.pardon: true
+      lunachat.mute: true
+      lunachat.unmute: true
+      lunachat.hide: true
+      lunachat.unhide: true
+      lunachat.info: true
+      lunachat.log: true
+      lunachat.create: true
+      lunachat.remove: true
+      lunachat.format: true
+      lunachat.moderator: true
+      lunachat.option: true
+      lunachat.message: true
+      lunachat.reply: true
+      lunachat.help: true
+      lunachat.japanize: true
+      lunachat.allowcc: true
+    description: 一般ユーザー向けの全コマンドの使用権限
+
+  lunachat.option.description:
+    description: descriptionオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.alias:
+    description: aliasオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.color:
+    description: colorオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.broadcast:
+    description: broadcastオプション設定コマンドの使用権限
+    default: op
+  lunachat.option.range:
+    description: rangeオプション設定コマンドの使用権限
+    default: op
+  lunachat.option.password:
+    description: passwordオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.visible:
+    description: visibleオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.allowcc:
+    description: allowccオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.japanize:
+    description: japanizeオプション設定コマンドの使用権限
+    default: true
+  lunachat.option.*:
+    children:
+      lunachat.option.description: true
+      lunachat.option.alias: true
+      lunachat.option.color: true
+      lunachat.option.broadcast: true
+      lunachat.option.range: true
+      lunachat.option.password: true
+      lunachat.option.visible: true
+      lunachat.option.allowcc: true
+      lunachat.option.japanize: true
+    description: オプション設定の全コマンドの使用権限
+
+  lunachat-admin.mod-all-channels:
+    description: 全チャンネルのモデレータ権限
+    default: op
+  lunachat-admin.listen-all-channels:
+    description: 全チャンネルのチャット表示権限
+    default: op
+  lunachat-admin.template:
+    description: templateコマンドの使用権限
+    default: op
+  lunachat-admin.dictionary:
+    description: dictionaryコマンドの使用権限
+    default: op
+  lunachat-admin.check:
+    description: checkコマンドの使用権限
+    default: op
+  lunachat-admin.set:
+    description: setコマンドの使用権限
+    default: op
+  lunachat-admin.reload:
+    description: reloadコマンドの使用権限
+    default: op
+  lunachat-admin.japanize-other:
+    description: 他者のjapanizeオンオフ設定コマンドの使用権限
+    default: op
+  lunachat-admin.force-invite:
+    description: 強制入室コマンドの使用権限
+    default: op
+  lunachat-admin.*:
+    children:
+      lunachat-admin.mod-all-channels: true
+      lunachat-admin.listen-all-channels: true
+      lunachat-admin.template: true
+      lunachat-admin.dictionary: true
+      lunachat-admin.check: true
+      lunachat-admin.set: true
+      lunachat-admin.reload: true
+      lunachat-admin.japanize-other: true
+      lunachat-admin.force-invite: true
+    description: 管理者向けの全コマンドの使用権限

@@ -162,7 +162,7 @@ public class LunaChatConfig {
         if ( !configFile.exists() ) {
             //LunaChat.instance.saveDefaultConfig();
             Utility.copyFileFromJar(LunaChat.getPluginJarFile(),
-                    configFile, "config_ja.yml", false);
+                    configFile, "config_en.yml", false);
         }
 
         LunaChat.getInstance().reloadConfig();
